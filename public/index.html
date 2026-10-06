@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Security Gateway</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Inter, Arial, sans-serif;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, #243b75 0%, transparent 35%),
+        radial-gradient(circle at bottom right, #123c55 0%, transparent 35%),
+        #080d18;
+      color: #f5f7ff;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: auto;
+    }
+
+    /* Header */
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 35px;
+      padding: 20px 24px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 18px;
+      backdrop-filter: blur(15px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #5b7cff, #7c4dff);
+      font-size: 23px;
+      box-shadow: 0 8px 25px rgba(91, 124, 255, 0.3);
+    }
+
+    .brand h1 {
+      font-size: 21px;
+      letter-spacing: 0.3px;
+    }
+
+    .brand p {
+      color: #9da8c2;
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #8ff0b3;
+      font-size: 13px;
+      background: rgba(58, 210, 125, 0.08);
+      border: 1px solid rgba(58, 210, 125, 0.18);
+      padding: 9px 13px;
+      border-radius: 30px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #42e58a;
+      box-shadow: 0 0 10px #42e58a;
+    }
+
+    /* Main */
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.055);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 26px;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
+    }
+
+    .card.full {
+      grid-column: 1 / -1;
+    }
+
+    .card-title {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin-bottom: 20px;
+    }
+
+    .icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      background: rgba(91, 124, 255, 0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .card-title h2 {
+      font-size: 17px;
+    }
+
+    .card-title p {
+      color: #8994ad;
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    /* Google */
+
+    .google-btn {
+      width: 100%;
+      padding: 13px;
+      border-radius: 11px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: #fff;
+      color: #111827;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .google-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 255, 255, 0.12);
+    }
+
+    /* Inputs */
+
+    .input-group {
+      margin-bottom: 12px;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(0, 0, 0, 0.2);
+      color: white;
+      outline: none;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    input::placeholder {
+      color: #68738b;
+    }
+
+    input:focus {
+      border-color: #657fff;
+      box-shadow: 0 0 0 3px rgba(101, 127, 255, 0.1);
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #5b7cff, #754cff);
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 4px;
+      transition: 0.2s;
+    }
+
+    .login-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(91, 124, 255, 0.25);
+    }
+
+    /* Actions */
+
+    .actions {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .action-btn {
+      padding: 14px 10px;
+      border-radius: 11px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.045);
+      color: #e9edff;
+      cursor: pointer;
+      font-size: 13px;
+      transition: 0.2s;
+    }
+
+    .action-btn:hover {
+      background: rgba(91, 124, 255, 0.13);
+      border-color: rgba(91, 124, 255, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .action-btn.logout:hover {
+      background: rgba(255, 75, 75, 0.1);
+      border-color: rgba(255, 75, 75, 0.3);
+    }
+
+    /* Output */
+
+    .output {
+      min-height: 120px;
+      max-height: 300px;
+      overflow-y: auto;
+      background: #050911;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 16px;
+      color: #8ff0b3;
+      font-family: "Courier New", monospace;
+      font-size: 12px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .footer {
+      text-align: center;
+      color: #59647b;
+      font-size: 12px;
+      margin-top: 28px;
+    }
+
+    @media (max-width: 750px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card.full {
+        grid-column: auto;
+      }
+
+      .actions {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .header {
+        align-items: flex-start;
+        gap: 15px;
+        flex-direction: column;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="container">
+
+```
+<!-- Header -->
+
+<header class="header">
+
+  <div class="brand">
+
+    <div class="logo">🛡️</div>
+
+    <div>
+      <h1>Enterprise Security Gateway</h1>
+      <p>Authentication & Access Control System</p>
+    </div>
+
+  </div>
+
+  <div class="status">
+    <span class="status-dot"></span>
+    System Online
+  </div>
+
+</header>
+
+
+<!-- Main Grid -->
+
+<main class="grid">
+
+  <!-- Google Login -->
+
+  <section class="card">
+
+    <div class="card-title">
+
+      <div class="icon">🔐</div>
+
+      <div>
+        <h2>Social Login</h2>
+        <p>Authenticate securely with Google</p>
+      </div>
+
+    </div>
+
+    <a
+      class="google-btn"
+      href="/api/v1/auth/google"
+      style="text-align:center; text-decoration:none; display:block;"
+    >
+      Continue with Google
+    </a>
+
+  </section>
+
+
+  <!-- Local Login -->
+
+  <section class="card">
+
+    <div class="card-title">
+
+      <div class="icon">👤</div>
+
+      <div>
+        <h2>Local Login</h2>
+        <p>Sign in using your gateway account</p>
+      </div>
+
+    </div>
+
+    <div class="input-group">
+      <input
+        id="email"
+        type="email"
+        placeholder="Email address"
+      />
+    </div>
+
+    <div class="input-group">
+      <input
+        id="password"
+        type="password"
+        placeholder="Password"
+      />
+    </div>
+
+    <button id="loginBtn" class="login-btn">
+      Sign In
+    </button>
+
+  </section>
+
+
+  <!-- Actions -->
+
+  <section class="card full">
+
+    <div class="card-title">
+
+      <div class="icon">⚡</div>
+
+      <div>
+        <h2>Security Actions</h2>
+        <p>Test authentication and authorization controls</p>
+      </div>
+
+    </div>
+
+    <div class="actions">
+
+      <button id="refreshBtn" class="action-btn">
+        🔄<br />
+        Refresh Token
+      </button>
+
+      <button id="profileBtn" class="action-btn">
+        👤<br />
+        GET Profile
+      </button>
+
+      <button id="payrollBtn" class="action-btn">
+        💳<br />
+        Approve Payroll
+      </button>
+
+      <button id="logoutBtn" class="action-btn logout">
+        🚪<br />
+        Logout
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- Output -->
+
+  <section class="card full">
+
+    <div class="card-title">
+
+      <div class="icon">📡</div>
+
+      <div>
+        <h2>API Response</h2>
+        <p>Server responses and authentication status</p>
+      </div>
+
+    </div>
+
+    <pre id="output" class="output">Waiting for action...</pre>
+
+  </section>
+
+</main>
+
+
+<div class="footer">
+  Security Gateway • Protected Authentication Infrastructure
+</div>
+```
+
+  </div>
+
+  <script src="/app.js"></script>
+
+</body>
+</html>
