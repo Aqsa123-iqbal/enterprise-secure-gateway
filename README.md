@@ -9,8 +9,8 @@ Multi-tenant secure API gateway with **Hybrid Authentication** (Local JWT + OAut
 
 | | URL |
 |---|---|
-| Live App | `<your-live-url>` |
-| Backend API Base | `<your-live-url>/api/v1` |
+| Live App | `https://enterprise-secure-gateway.bonto.run` |
+| Backend API Base | `[<your-live-url>/api/v1](https://enterprise-secure-gateway.bonto.run/api/v1)` |
 | GitHub Repo | https://github.com/Aqsa123-iqbal/enterprise-secure-gateway |
 
 > Hosted on Render (free tier). The first request may take 30-50 seconds to wake the server.
