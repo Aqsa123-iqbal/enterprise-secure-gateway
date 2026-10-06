@@ -108,38 +108,6 @@ enterprise-secure-gateway/
 └── README.md
 ```
 
-### Important Files
-
-**`server.js`**
-
-Application entry point. It loads environment variables, connects to MongoDB, and starts the Express server.
-
-**`src/app.js`**
-
-Configures Express, security middleware, CORS, cookies, Passport, frontend serving, and API routes.
-
-**`src/controllers/auth.controller.js`**
-
-Handles registration, login, refresh-token rotation, logout, and OAuth callback.
-
-**`src/middleware/auth.js`**
-
-Verifies JWT access tokens for protected routes.
-
-**`src/middleware/checkRole.js`**
-
-Implements role-based authorization.
-
-**`src/utils/tokens.js`**
-
-Generates access and refresh tokens and hashes refresh tokens before database storage.
-
-**`seed.js`**
-
-Creates the SuperAdmin, Manager, and Employee test accounts.
-
----
-
 ## Local Setup
 
 Clone the repository:
@@ -349,51 +317,7 @@ https://enterprise-secure-gateway.bonto.run/api/v1
 | POST   | `/payroll/approve`      | Manager, SuperAdmin     |
 | DELETE | `/users/:id`            | SuperAdmin              |
 
-### Live API URLs
 
-**Login**
-
-```text
-POST https://enterprise-secure-gateway.bonto.run/api/v1/auth/login
-```
-
-**Register**
-
-```text
-POST https://enterprise-secure-gateway.bonto.run/api/v1/auth/register
-```
-
-**Refresh**
-
-```text
-POST https://enterprise-secure-gateway.bonto.run/api/v1/auth/refresh
-```
-
-**Logout**
-
-```text
-POST https://enterprise-secure-gateway.bonto.run/api/v1/auth/logout
-```
-
-**Google Login**
-
-```text
-GET https://enterprise-secure-gateway.bonto.run/api/v1/auth/google
-```
-
-**Profile**
-
-```text
-GET https://enterprise-secure-gateway.bonto.run/api/v1/employee/profile
-```
-
-**Payroll Approval**
-
-```text
-POST https://enterprise-secure-gateway.bonto.run/api/v1/payroll/approve
-```
-
----
 
 ## Test Credentials
 
