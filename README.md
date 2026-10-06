@@ -116,9 +116,9 @@ Base path: `/api/v1`
 
 | Role | Email | Password |
 |---|---|---|
-| SuperAdmin | `superadmin@test.com` | `Super@123` |
-| Manager | `manager@test.com` | `Manager@123` |
-| Employee | `employee@test.com` | `Employee@123` |
+| SuperAdmin | `superadmin@gateway.com` | `Super@123` |
+| Manager | `manager@gateway.com` | `Manager@123` |
+| Employee | `employee@gateway.com` | `Employee@123` |
 
 > These accounts are created by `seed.js` and exist in the deployed database as well.
 
